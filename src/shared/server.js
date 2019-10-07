@@ -5,10 +5,11 @@ const routes = require('./routes');
 
 const app = express();
 
-mongoose.connect('mongodb+srv://omnistack:teste123@cluster0-ct5eb.mongodb.net/semana09?retryWrites=true&w=majority', {
+//mongoose.connect('mongodb+srv://teste:teste123@omnistack-n3ytn.mongodb.net/mydatabase?retryWrites=true&w=majority', {
+    mongoose.connect('mongodb://localhost:27017/princedb', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-})
+}).catch(error => console.log(error))
 
 app.use(express.json());
 app.use(routes);

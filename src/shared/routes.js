@@ -1,8 +1,13 @@
 const express = require('express');
-const SessionController = require('../controllers/SessionControlle');
+const multer = require('multer');
+const uploadConfig = require('../config/upload')
+
+
+const SessionController = require('../controllers/SessionController');
 const SportController = require('../controllers/SpotController');
 
 const routes = express.Router();
+const upload = multer(uploadConfig);
 
 // req.query = acessar query params (para filtro)
 // req.params = Acessar route params (para edicao, delete)
@@ -19,6 +24,6 @@ routes.put('/users/:id', (req, res) => {
 
 //POST
 routes.post('/sessions', SessionController.store);
-routes.post('/spots', SportController.store);
+routes.post('/spots', upload.single('thumbnail'), SportController.store);
 
 module.exports = routes;
