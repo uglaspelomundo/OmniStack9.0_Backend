@@ -2,6 +2,25 @@ const User = require('../models/User');
 const Spot = require('../models/Spot');
 
 module.exports = {
+
+    // FILTRANDO A TECNOLOGIA
+    async index(req, res) {
+        const { tech } = req.query;
+
+        const regex = new RegExp(tech, 'i')
+        const spots = await Spot.find({ techs: regex });
+
+        if (spots.length === 0) {
+            return res.status(400).json({
+                message: 'Nenhum registro encontrado'
+            });
+        }
+
+        return res.json(spots);
+    },
+
+
+    // CRIANDO SPOT
     async store(req, res) {
         const { filename } = req.file;
         const { company, techs, price } = req.body;
