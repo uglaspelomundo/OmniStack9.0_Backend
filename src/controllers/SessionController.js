@@ -13,10 +13,6 @@ module.exports = {
 
         if (!user) {
             user = await User.create({ email });
-        } else {
-            return res.status(400).json({
-                message: 'Usuario ja cadastrado'
-            })
         }
 
         return res.json(user);
