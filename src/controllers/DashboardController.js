@@ -8,7 +8,7 @@ module.exports = {
 
         if (spots.length === 0) {
             return res.status(400).json({
-                message: 'Usuario nao existe'
+                message: 'Spot vazio'
             })
         }
 
